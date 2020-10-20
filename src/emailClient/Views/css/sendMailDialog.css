@@ -1,0 +1,29 @@
+#btnSendMessage {
+    -fx-background-color: #f48f3f;
+    -fx-background-radius: 5px;
+    -fx-background-insets: 0;
+    -fx-border-color: #f48f3f;
+    -fx-border-radius: 5px;
+}
+
+#btnSendMessage:hover {
+    -fx-effect: dropshadow(gaussian, rgb(176, 176, 176), 10, 0.2, 0, 0);
+}
+
+#btnSaveToDraft {
+    -fx-background-color: white;
+    -fx-background-radius: 5px;
+    -fx-border-color: #f48f3f;
+    -fx-border-radius: 5px;
+    -fx-text-fill: #f48f3f;
+    -fx-background-insets: 0;
+}
+
+#btnSaveToDraft:hover {
+    -fx-effect: dropshadow(gaussian, rgb(188, 188, 188), 10, 0.2, 0, 0);
+}
+
+.iconErrorSubject,
+.iconErrorRecipient{
+    visibility: hidden;
+}

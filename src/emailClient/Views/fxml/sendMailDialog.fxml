@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.web.HTMLEditor?>
+
+<AnchorPane prefHeight="500.0" prefWidth="650.0" stylesheets="@../css/sendMailDialog.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="emailClient.Controllers.HomeController">
+   <children>
+      <GridPane layoutX="14.0" layoutY="14.0" prefHeight="70.0" prefWidth="590.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="285.199951171875" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="503.60003662109375" minWidth="10.0" prefWidth="443.60002441406255" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="503.60003662109375" minWidth="10.0" prefWidth="40.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="503.60003662109375" minWidth="10.0" prefWidth="60.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Người nhận">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label text="Chủ đề" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <TextField id="tfRecipient" fx:id="tfRecipient" GridPane.columnIndex="1" />
+            <TextField id="tfSubject" fx:id="tfSubject" prefHeight="26.0" prefWidth="454.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <ChoiceBox id="optionMailChoiceBox" fx:id="optionMailChoiceBox" prefWidth="70.0" GridPane.columnIndex="3" GridPane.halignment="CENTER">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </ChoiceBox>
+            <FontAwesomeIcon id="iconErrorRecipient" fx:id="iconErrorRecipient" fill="RED" iconName="EXCLAMATION_CIRCLE" size="1.5em" styleClass="iconErrorRecipient" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <FontAwesomeIcon id="iconErrorSubject" fx:id="iconErrorSubject" fill="RED" iconName="EXCLAMATION_CIRCLE" size="1.5em" styleClass="iconErrorSubject" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+         </children>
+      </GridPane>
+      <Label layoutX="10.0" layoutY="97.0" text="Nội dung" AnchorPane.leftAnchor="10.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Line endX="477.29290771484375" endY="7.62939453125E-6" layoutX="115.0" layoutY="90.0" startX="1102.185791015625" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+         <stroke>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="WHITE" />
+                  <Stop color="WHITE" offset="0.007633587786259542" />
+                  <Stop color="#f89831" offset="0.5389312977099237" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </stroke>
+      </Line>
+      <ButtonBar layoutX="385.0" layoutY="346.0" prefHeight="47.0" prefWidth="650.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <buttons>
+          <Button id="btnSaveToDraft" mnemonicParsing="false" text="Lưu vào thư nháp">
+               <padding>
+                  <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+               </padding>
+               <font>
+                  <Font size="15.0" />
+               </font></Button>
+            <Button id="btnSendMessage" mnemonicParsing="false" onAction="#handleSendMail" text="Gửi thư" textFill="WHITE">
+               <padding>
+                  <Insets bottom="5.0" top="5.0" />
+               </padding>
+               <font>
+                  <Font size="15.0" />
+               </font></Button>
+        </buttons>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </ButtonBar>
+      <HTMLEditor id="mailContent" fx:id="mailContent" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" layoutX="64.0" layoutY="123.0" prefHeight="325.0" prefWidth="650.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+   </children>
+</AnchorPane>

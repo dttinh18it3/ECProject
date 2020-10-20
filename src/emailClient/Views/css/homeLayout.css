@@ -1,0 +1,25 @@
+
+.background {
+    -fx-background-color: white;
+}
+#btnSetting {
+    -fx-background-color: white;
+    -fx-border-color: red;
+    -fx-border-radius: 50px;
+}
+.userAvatar {
+    -fx-background-color: red;
+    -fx-border-color: red;
+}
+#btnCreateMessage {
+    -fx-background-color: #f48f3f;
+    -fx-text-fill: white;
+    -fx-padding: 10px 15px;
+    -fx-background-radius: 30px;
+    -fx-effect: dropshadow(gaussian, rgb(160, 160, 160), 20, 0.3, 0, 0.5);
+}
+#btnCreateMessage:hover {
+    -fx-background-color: #cb6000;
+    -fx-effect: dropshadow(gaussian, rgb(244, 143, 63), 20, 0.3, 0, 0.5);
+}
+
