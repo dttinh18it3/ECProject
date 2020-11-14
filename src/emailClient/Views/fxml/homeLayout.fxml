@@ -14,7 +14,7 @@
    <children>
       <SplitPane dividerPositions="0.30178173719376394" layoutX="313.0" layoutY="177.0" prefHeight="600.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
-          <AnchorPane maxWidth="400.0" minWidth="200.0" prefWidth="300.0" styleClass="background">
+          <AnchorPane maxWidth="400.0" minWidth="200.0" prefHeight="600.0" prefWidth="300.0" styleClass="background">
                <children>
                   <Accordion layoutX="14.0" layoutY="121.0" styleClass="background" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <panes>
@@ -49,7 +49,7 @@
                      </opaqueInsets>
                   </AnchorPane>
                </children></AnchorPane>
-          <AnchorPane prefHeight="598.0" prefWidth="600.0" styleClass="background">
+          <AnchorPane prefHeight="600.0" prefWidth="600.0" styleClass="background">
                <children>
                   <Button fx:id="btnCreateMessage" layoutX="558.0" layoutY="541.0" mnemonicParsing="false" onAction="#handleCreateMessageDialog" text="Soạn thư" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
                      <graphic>

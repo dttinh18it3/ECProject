@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="activation">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../../../../Applications/JavaMail/activation.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../JavaMail/activation.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

@@ -71,7 +71,7 @@
       </Line>
       <ButtonBar layoutX="385.0" layoutY="346.0" prefHeight="47.0" prefWidth="650.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <buttons>
-          <Button id="btnSaveToDraft" mnemonicParsing="false" text="Lưu vào thư nháp">
+          <Button id="btnSaveToDraft" mnemonicParsing="false" text="Lưu bản nháp">
                <padding>
                   <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                </padding>

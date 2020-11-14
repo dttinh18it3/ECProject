@@ -11,6 +11,7 @@
     -fx-background-color: red;
     -fx-border-color: red;
 }
+
 #btnCreateMessage {
     -fx-background-color: #f48f3f;
     -fx-text-fill: white;
@@ -18,7 +19,19 @@
     -fx-background-radius: 30px;
     -fx-effect: dropshadow(gaussian, rgb(160, 160, 160), 20, 0.3, 0, 0.5);
 }
-#btnCreateMessage:hover {
+.btn_primary {
+    -fx-background-color: #f48f3f;
+    -fx-text-fill: white;
+    -fx-padding: 10px 15px;
+    -fx-background-radius: 5px;
+    /*-fx-effect: dropshadow(gaussian, rgb(160, 160, 160), 20, 0.3, 0, 0.5);*/
+}
+
+.btn_primary:hover{
+    -fx-effect: dropshadow(gaussian, rgb(160, 160, 160), 20, 0.3, 0, 0.5);
+}
+
+#btnCreateMessage:hover{
     -fx-background-color: #cb6000;
     -fx-effect: dropshadow(gaussian, rgb(244, 143, 63), 20, 0.3, 0, 0.5);
 }
