@@ -4,19 +4,17 @@ import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import emailClient.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.media.MediaException;
 import javafx.scene.web.HTMLEditor;
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -24,11 +22,11 @@ import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.io.IOException;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import emailClient.Models.MessageModel;
+
 
 public class HomeController {
 
@@ -37,7 +35,7 @@ public class HomeController {
     public static final int TSL_PORT = 587;
 
 
-    private ObservableList<String> optionMail = FXCollections.observableArrayList("TO", "CC", "BCC");
+    private final ObservableList<String> optionMail = FXCollections.observableArrayList("TO", "CC", "BCC");
 
     @FXML
     private TextField tfRecipient;
@@ -48,14 +46,19 @@ public class HomeController {
     @FXML
     private TextField tfLoginPassword;
     @FXML
-    private ChoiceBox<String> optionMailChoiceBox = new ChoiceBox<>();
+    private Button btnLogin;
+    @FXML
+    private final ChoiceBox<String> optionMailChoiceBox = new ChoiceBox<>();
     @FXML
     private FontAwesomeIcon iconErrorRecipient = new FontAwesomeIcon();
     @FXML
     private FontAwesomeIcon iconErrorSubject = new FontAwesomeIcon();
     @FXML
     private HTMLEditor mailContent = new HTMLEditor();
-
+    @FXML
+    private TableView<MessageModel> messageTable = new TableView<>();
+    @FXML
+    public static TableColumn<MessageModel, String> emailSubjectColunm = new TableColumn<>("emailSubject");
 
 
     private Stage stageDialog;
@@ -75,6 +78,7 @@ public class HomeController {
     }
 
     public boolean connectAuthenticatedToServer() {
+//SMTP
         properties = new Properties();
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.starttls.enable", "true");
@@ -82,11 +86,13 @@ public class HomeController {
         properties.put("mail.smtp.socketFactory.port", SSL_PORT);
         properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
         properties.put("mail.smtp.port", SSL_PORT);
+//POP3
+        properties.put("mail.pop3s.host", "pop.gmail.com");
+        properties.put("mail.pop3s.port", "995");
+        properties.put("mail.pop3s.starttls.enable", "true");
 
         login_email = tfLoginEmail.getText().trim();
         login_password = tfLoginPassword.getText().trim();
-
-
         try {
             // set Session
             session = Session.getDefaultInstance(properties, new javax.mail.Authenticator() {
@@ -94,14 +100,13 @@ public class HomeController {
                     return new PasswordAuthentication(login_email, login_password);
                 }
             });
-
-            // login with google account
+            /* login with google account */
             Transport transport = null;
             System.out.println(session);
             transport = session.getTransport("smtps");
             transport.connect (HOST_NAME, SSL_PORT, login_email, login_password);
             System.out.println("Login successfully !!");
-            // login successfully => show home layout
+            /* login successfully => show home layout */
             mainApp.showHomeLayout();
             return true;
         } catch (NoSuchProviderException e) {
@@ -115,6 +120,51 @@ public class HomeController {
             return false;
         }
     }
+
+    public void getInbox() {
+        // create the POP3 store object and connect with the pop server
+        try {
+            Store store = session.getStore("pop3s");
+            store.connect();
+
+            // create the folder object and open it
+            Folder emailFolder = store.getFolder("INBOX");
+            emailFolder.open(Folder.READ_ONLY);
+
+            // retrieve the messages from the folder in an array and print it
+            Message[] messages = emailFolder.getMessages();
+            System.out.println("messages.length---" + messages.length);
+
+            for (int i = 0, n = messages.length; i < n; i++) {
+                Message message = messages[i];
+                String recipient = String.valueOf(message.getFrom()[0]);
+                Main.messageData.add(new MessageModel(i, recipient, message.getSubject(), message.getContent().toString()));
+//                System.out.println(Main.messageData.get(i).getMailSubject());
+/*
+                System.out.println("---------------------------------");
+                System.out.println("Email Number " + (i + 1));
+                System.out.println("Subject: " + message.getSubject());
+                System.out.println("From: " + message.getFrom()[0]);
+                System.out.println("Text: " + message.getContent().toString());
+*/
+            }
+            // close the store and folder objects
+
+            emailFolder.close(false);
+            store.close();
+        } catch (NoSuchProviderException e) {
+            System.out.println("Catch session get store");
+            e.printStackTrace();
+        } catch (MessagingException e) {
+            System.out.println("Catch store connect");
+            e.printStackTrace();
+        } catch (IOException e) {
+            System.out.println("Catch add messagedata");
+            e.printStackTrace();
+        }
+    }
+
+
 
     //checkbox option mail (TO/CC/BCC)
     private void loadOptionMail() {
@@ -143,12 +193,26 @@ public class HomeController {
     @FXML
     public void handleLoginValidate() {
         if (connectAuthenticatedToServer()) {
+            getInbox();
+            showInboxSubject();
             mainApp.showHomeLayout();
-
         }
         else {
             showAlert("Đăng nhập thất bại!", "Sai tài khoản hoặc mật khẩu!");
         }
+    }
+
+
+    //    Press Enter button
+    public void pressBtnEnter() {
+        tfLoginPassword.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent keyEvent) {
+                if (keyEvent.getCode() == KeyCode.ENTER) {
+                    handleLoginValidate();
+                }
+            }
+        });
     }
 
 
@@ -228,10 +292,17 @@ public class HomeController {
 
     public void setDialog(Stage stageDialog) {
         this.stageDialog = stageDialog;
-        this.stageDialog = stageDialog;
     }
 
     public void setMainApp(Main main) {
         this.mainApp = main;
+        messageTable.setItems(mainApp.getMessageData());
+    }
+
+
+    public void showInboxSubject() {
+        System.out.println(Main.messageData.get(1).mailSubjectProperty());
+        emailSubjectColunm.setCellValueFactory(messageModelStringCellDataFeatures
+                -> messageModelStringCellDataFeatures.getValue().mailSubjectProperty());
     }
 }

@@ -1,6 +1,7 @@
 package emailClient;
 
 import emailClient.Controllers.HomeController;
+import emailClient.Models.MessageModel;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +21,8 @@ import java.io.IOException;
 public class Main extends Application {
     private BorderPane dashboardLayout;
     public static Stage primaryStage;
+
+    public static ObservableList<MessageModel> messageData = FXCollections.observableArrayList();
 
 
     @Override
@@ -69,17 +72,22 @@ public class Main extends Application {
 //    show login layout into the center of dashboard layout
     public void showLoginLayout() {
         try {
-            FXMLLoader loadder = new FXMLLoader();
-            loadder.setLocation(Main.class.getResource(("Views/fxml/loginForm.fxml")));
-            AnchorPane loginLayout = (AnchorPane) loadder.load();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource(("Views/fxml/loginForm.fxml")));
+            AnchorPane loginLayout = (AnchorPane) loader.load();
             //set login layout into the center of dashboard layout
             dashboardLayout.setCenter(loginLayout);
-            HomeController controller = loadder.getController();
+            HomeController controller = loader.getController();
             controller.setMainApp(this);
+            controller.pressBtnEnter();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+    public ObservableList<MessageModel> getMessageData() {
+        return messageData;
+    }
+
 
 
     public static void main(String[] args) {

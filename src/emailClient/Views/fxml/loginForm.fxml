@@ -38,7 +38,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button alignment="CENTER" layoutX="554.0" layoutY="315.0" mnemonicParsing="false" onAction="#handleLoginValidate" styleClass="btn_primary" stylesheets="@../css/homeLayout.css" text="Đăng nhập" AnchorPane.bottomAnchor="250.0" AnchorPane.rightAnchor="225.0" />
+      <Button id="btnLogin" fx:id="btnLogin" alignment="CENTER" layoutX="554.0" layoutY="315.0" mnemonicParsing="false" onAction="#handleLoginValidate" styleClass="btn_primary" stylesheets="@../css/homeLayout.css" text="Đăng nhập" AnchorPane.bottomAnchor="250.0" AnchorPane.rightAnchor="225.0" />
       <Hyperlink layoutX="228.0" layoutY="327.0" text="Đăng nhập bằng trình duyệt" AnchorPane.bottomAnchor="250.0" AnchorPane.leftAnchor="220.0" />
    </children>
 </AnchorPane>
