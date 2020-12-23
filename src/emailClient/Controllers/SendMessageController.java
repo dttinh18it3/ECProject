@@ -33,14 +33,15 @@ public class SendMessageController {
     private TextField tfRecipient;
     @FXML
     private TextField tfSubject;
+    @FXML
+    private ChoiceBox<String> optionMailChoiceBox;
 
     private final ObservableList<String> optionMail = FXCollections.observableArrayList("TO", "CC", "BCC");
 
     @FXML
-    private ChoiceBox<String> optionMailChoiceBox;
-
-
-
+    private void initialize() {
+        loadOptionMail();
+    }
 
 
     private Message sendMessage(Session session)  {
@@ -96,7 +97,7 @@ public class SendMessageController {
                 ex.printStackTrace();
             }
         } else {
-            showAlert("Cảnh báo!", "Vui lòng nhập đầy đủ thông tin thư!");
+            showAlert("WARNING!", "Please enter your full email information!");
         }
     }
 

@@ -31,12 +31,12 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Người nhận">
+            <Label text="To">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Label text="Chủ đề" GridPane.rowIndex="1">
+            <Label text="Subject" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -52,7 +52,7 @@
             <FontAwesomeIcon id="iconErrorSubject" fx:id="iconErrorSubject" fill="RED" iconName="EXCLAMATION_CIRCLE" size="1.5em" styleClass="iconErrorSubject" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
          </children>
       </GridPane>
-      <Label layoutX="10.0" layoutY="97.0" text="Nội dung" AnchorPane.leftAnchor="10.0">
+      <Label layoutX="10.0" layoutY="97.0" text="Contents" AnchorPane.leftAnchor="10.0">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -71,14 +71,14 @@
       </Line>
       <ButtonBar layoutX="385.0" layoutY="346.0" prefHeight="47.0" prefWidth="650.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <buttons>
-          <Button id="btnSaveToDraft" mnemonicParsing="false" text="Lưu bản nháp">
+          <Button id="btnSaveToDraft" mnemonicParsing="false" text="Save as drafts">
                <padding>
                   <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                </padding>
                <font>
                   <Font size="15.0" />
                </font></Button>
-            <Button id="btnSendMessage" mnemonicParsing="false" onAction="#handleSendMail" text="Gửi thư" textFill="WHITE">
+            <Button id="btnSendMessage" mnemonicParsing="false" onAction="#handleSendMail" text="Send" textFill="WHITE">
                <padding>
                   <Insets bottom="5.0" top="5.0" />
                </padding>

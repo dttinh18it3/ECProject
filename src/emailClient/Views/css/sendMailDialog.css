@@ -27,3 +27,67 @@
 .iconErrorRecipient{
     visibility: hidden;
 }
+#btnDelete {
+    -fx-background-color: #fff;
+    -fx-background-radius: 5px;
+    -fx-background-insets: 0;
+    -fx-text-fill: #ff0000;
+    -fx-border-color: #ff0000;
+    -fx-border-radius: 5px;
+}
+#btnDelete:hover {
+    -fx-background-color: #ff0000;
+    -fx-background-radius: 5px;
+    -fx-background-insets: 0;
+    -fx-text-fill: #fff;
+    -fx-border-color: #ff0000;
+    -fx-border-radius: 5px;
+}
+#btnReply {
+    -fx-background-color: #fff;
+    -fx-background-radius: 5px;
+    -fx-background-insets: 0;
+    -fx-text-fill: #f48f3f;
+    -fx-border-color: #f48f3f;
+    -fx-border-radius: 5px;
+}
+#btnReply:hover {
+    -fx-background-color: #f48f3f;
+    -fx-background-radius: 5px;
+    -fx-background-insets: 0;
+    -fx-text-fill: #fff;
+    -fx-border-color: #f48f3f;
+    -fx-border-radius: 5px;
+}
+#btnForward {
+    -fx-background-color: #fff;
+    -fx-background-radius: 5px;
+    -fx-background-insets: 0;
+    -fx-text-fill: #3facf4;
+    -fx-border-color: #3facf4;
+    -fx-border-radius: 5px;
+}
+#btnForward:hover {
+    -fx-background-color: #3facf4;
+    -fx-background-radius: 5px;
+    -fx-background-insets: 0;
+    -fx-text-fill: #fff;
+    -fx-border-color: #3facf4;
+    -fx-border-radius: 5px;
+}
+#btnMarkAsUnread {
+    -fx-background-color: #fff;
+    -fx-background-radius: 5px;
+    -fx-background-insets: 0;
+    -fx-text-fill: #000;
+    -fx-border-color: #000;
+    -fx-border-radius: 5px;
+}
+#btnMarkAsUnread:hover {
+    -fx-background-color: #000;
+    -fx-background-radius: 5px;
+    -fx-background-insets: 0;
+    -fx-text-fill: #fff;
+    -fx-border-color: #000;
+    -fx-border-radius: 5px;
+}

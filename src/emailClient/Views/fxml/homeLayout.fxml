@@ -4,7 +4,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -21,7 +21,7 @@
                <children>
                   <Accordion layoutX="14.0" layoutY="121.0" styleClass="background" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <panes>
-                      <TitledPane animated="false" prefWidth="300.0" text="Hộp thư đến">
+                      <TitledPane animated="false" prefWidth="300.0" text="INBOX">
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
@@ -33,12 +33,12 @@
                                  </children></AnchorPane>
                         </content>
                       </TitledPane>
-                      <TitledPane animated="false" text="Thư đã gửi">
+                      <TitledPane animated="false" text="SENT">
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                         </content>
                       </TitledPane>
-                      <TitledPane animated="false" text="Thư nháp">
+                      <TitledPane animated="false" text="DRAFTS">
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                         </content>
@@ -48,11 +48,6 @@
                   <AnchorPane layoutY="538.4000244140625" prefHeight="60.0" styleClass="background" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                      <children>
                         <Circle fill="DODGERBLUE" layoutX="30.0" layoutY="30.0" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
-                        <FontAwesomeIcon iconName="COG" layoutX="244.0" layoutY="30.0" size="1.5em" text="" textAlignment="CENTER" textOrigin="CENTER" wrappingWidth="20.0" AnchorPane.rightAnchor="10.0">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </FontAwesomeIcon>
                      </children>
                      <opaqueInsets>
                         <Insets left="10.0" right="10.0" />
@@ -61,7 +56,7 @@
                </children></AnchorPane>
           <AnchorPane prefHeight="600.0" prefWidth="600.0" styleClass="background">
                <children>
-                  <Button fx:id="btnCreateMessage" layoutX="558.0" layoutY="541.0" mnemonicParsing="false" onAction="#handleCreateMessageDialog" text="Soạn thư" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                  <Button fx:id="btnCreateMessage" layoutX="558.0" layoutY="541.0" mnemonicParsing="false" onAction="#handleCreateMessageDialog" text="Compose" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
                      <graphic>
                         <FontAwesomeIcon fill="WHITE" iconName="PLUS" size="1.5em" />
                      </graphic>
@@ -69,6 +64,14 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
+                  <ButtonBar layoutX="14.0" layoutY="14.0" prefHeight="40.0" prefWidth="597.0">
+                    <buttons>
+                      <Button id="btnReply" fx:id="btnReply" mnemonicParsing="false" stylesheets="@../css/sendMailDialog.css" text="Reply" />
+                        <Button id="btnForward" fx:id="btnForward" mnemonicParsing="false" stylesheets="@../css/sendMailDialog.css" text="Forward" />
+                        <Button id="btnMarkAsUnread" fx:id="btnMarkAsUnread" mnemonicParsing="false" stylesheets="@../css/sendMailDialog.css" text="Mark as unread" />
+                        <Button id="btnDelete" fx:id="btnDelete" mnemonicParsing="false" stylesheets="@../css/sendMailDialog.css" text="Delete" />
+                    </buttons>
+                  </ButtonBar>
                </children></AnchorPane>
         </items>
       </SplitPane>

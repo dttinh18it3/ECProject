@@ -24,8 +24,6 @@ public class LoginController {
     private TextField tfLoginEmail;
     @FXML
     private TextField tfLoginPassword;
-    @FXML
-    private Button btnLogin;
 
     public static final String HOST_NAME = "smtp.gmail.com";
     public static final int SSL_PORT = 465;
@@ -104,7 +102,7 @@ public class LoginController {
             showHomeLayout();
         }
         else {
-            showAlert("Đăng nhập thất bại!", "Sai tài khoản hoặc mật khẩu!");
+            showAlert("FAILURE!", "Email or password incorrect!");
         }
     }
 
