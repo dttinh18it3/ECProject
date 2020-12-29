@@ -7,13 +7,17 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import javax.mail.*;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 
@@ -26,6 +30,18 @@ public class HomeController {
     private TableView<MessageModel> messageTable;
     @FXML
     private TableColumn<MessageModel, String> emailSubjectColunm;
+    @FXML
+    private ButtonBar btnbarFunction;
+    @FXML
+    private ScrollPane spMessageDetails;
+    @FXML
+    private Label lblSubject;
+    @FXML
+    private Label lblRecipient;
+    @FXML
+    private Label lblTime;
+    @FXML
+    private WebView wvContent;
 
     public static ObservableList<MessageModel> messageData = FXCollections.observableArrayList();
 
@@ -35,6 +51,7 @@ public class HomeController {
     @FXML
     private void initialize() {
         showInboxSubject();
+        showMessageDetails(null);
     }
 
     @FXML
@@ -67,30 +84,18 @@ public class HomeController {
         try {
             Store store = LoginController.session.getStore("pop3s");
             store.connect();
-
             // create the folder object and open it
             Folder emailFolder = store.getFolder("INBOX");
             emailFolder.open(Folder.READ_ONLY);
-
             // retrieve the messages from the folder in an array and print it
             Message[] messages = emailFolder.getMessages();
             System.out.println("messages.length---" + messages.length);
-
             for (int i = 0, n = messages.length; i < n; i++) {
                 Message message = messages[i];
                 String recipient = String.valueOf(message.getFrom()[0]);
                 messageData.add(new MessageModel(i, recipient, message.getSubject(), message.getContent().toString()));
-//                System.out.println(Main.messageData.get(i).getMailSubject());
-/*
-                System.out.println("---------------------------------");
-                System.out.println("Email Number " + (i + 1));
-                System.out.println("Subject: " + message.getSubject());
-                System.out.println("From: " + message.getFrom()[0]);
-                System.out.println("Text: " + message.getContent().toString());
-*/
             }
             // close the store and folder objects
-
             emailFolder.close(false);
             store.close();
         } catch (NoSuchProviderException e) {
@@ -108,10 +113,26 @@ public class HomeController {
 
     public void showInboxSubject() {
         getInbox();
-        System.out.println(messageData.get(1).mailSubjectProperty());
         messageTable.setItems(messageData);
         emailSubjectColunm.setCellValueFactory(messageModelStringCellDataFeatures
                 -> messageModelStringCellDataFeatures.getValue().mailSubjectProperty());
+
+        messageTable.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> showMessageDetails(newValue));
+
+    }
+
+    public void showMessageDetails(MessageModel messageModel) {
+        if (messageModel == null) {
+            btnbarFunction.setVisible(false);
+            spMessageDetails.setVisible(false);
+        } else {
+            btnbarFunction.setVisible(true);
+            spMessageDetails.setVisible(true);
+            lblSubject.setText(messageModel.getMailSubject());
+            lblRecipient.setText(messageModel.getRecipient());
+            wvContent.getEngine().loadContent(messageModel.getMailContent(), "text/html");
+        }
     }
 
 }

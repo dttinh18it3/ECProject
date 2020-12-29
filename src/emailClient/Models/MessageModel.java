@@ -5,14 +5,6 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-import javax.activation.DataHandler;
-import javax.mail.*;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.Date;
-import java.util.Enumeration;
-
 public class MessageModel {
     private final IntegerProperty mailID;
     private final StringProperty recipient;

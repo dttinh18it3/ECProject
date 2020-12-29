@@ -35,7 +35,10 @@ public class LoginController {
     public static String login_password = "";
     private static Properties properties;
 
-
+    @FXML
+    private void initialize() {
+        pressBtnEnter();
+    }
 
     public boolean connectAuthenticatedToServer() {
 //SMTP

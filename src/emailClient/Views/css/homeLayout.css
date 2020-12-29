@@ -15,7 +15,7 @@
 #btnCreateMessage {
     -fx-background-color: #f48f3f;
     -fx-text-fill: white;
-    -fx-padding: 10px 15px;
+    -fx-padding: 8px 10px;
     -fx-background-radius: 30px;
     -fx-effect: dropshadow(gaussian, rgb(160, 160, 160), 20, 0.3, 0, 0.5);
 }

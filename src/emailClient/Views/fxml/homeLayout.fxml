@@ -5,13 +5,19 @@
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.web.WebView?>
 
 <AnchorPane stylesheets="@../css/homeLayout.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="emailClient.Controllers.HomeController">
    <children>
@@ -19,15 +25,15 @@
         <items>
           <AnchorPane maxWidth="400.0" minWidth="200.0" prefHeight="600.0" prefWidth="300.0" styleClass="background">
                <children>
-                  <Accordion layoutX="14.0" layoutY="121.0" styleClass="background" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <Accordion layoutX="14.0" prefHeight="538.0" prefWidth="268.0" styleClass="background" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <panes>
-                      <TitledPane animated="false" prefWidth="300.0" text="INBOX">
+                      <TitledPane animated="false" prefHeight="515.0" prefWidth="268.0" text="INBOX">
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
                                     <TableView fx:id="messageTable" layoutX="33.0" layoutY="70.0" prefHeight="460.8" prefWidth="266.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                       <columns>
-                                        <TableColumn id="emailColunmSubject" fx:id="emailSubjectColunm" prefWidth="246.39999468326565" text="Chủ đề" />
+                                        <TableColumn id="emailColunmSubject" fx:id="emailSubjectColunm" prefWidth="246.39999468326565" text="Subjects" />
                                       </columns>
                                     </TableView>
                                  </children></AnchorPane>
@@ -47,7 +53,13 @@
                   </Accordion>
                   <AnchorPane layoutY="538.4000244140625" prefHeight="60.0" styleClass="background" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                      <children>
-                        <Circle fill="DODGERBLUE" layoutX="30.0" layoutY="30.0" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle layoutX="30.0" layoutY="30.0" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Label layoutX="75.0" layoutY="14.0" text="Kuroba Kaito">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="75.0" layoutY="30.0" text="kurobakaito2708@gmail.com" />
                      </children>
                      <opaqueInsets>
                         <Insets left="10.0" right="10.0" />
@@ -56,15 +68,45 @@
                </children></AnchorPane>
           <AnchorPane prefHeight="600.0" prefWidth="600.0" styleClass="background">
                <children>
-                  <Button fx:id="btnCreateMessage" layoutX="558.0" layoutY="541.0" mnemonicParsing="false" onAction="#handleCreateMessageDialog" text="Compose" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
-                     <graphic>
-                        <FontAwesomeIcon fill="WHITE" iconName="PLUS" size="1.5em" />
-                     </graphic>
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Button>
-                  <ButtonBar layoutX="14.0" layoutY="14.0" prefHeight="40.0" prefWidth="597.0">
+                  <ScrollPane fx:id="spMessageDetails" layoutX="4.0" layoutY="52.0" prefHeight="538.0" prefWidth="624.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <content>
+                        <GridPane prefHeight="526.0" prefWidth="590.0" style="-fx-background-color: #fff;">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints maxHeight="171.4" minHeight="10.0" prefHeight="50.00000915527344" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="259.4" minHeight="10.0" prefHeight="24.4" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="435.2000030517578" minHeight="10.0" prefHeight="16.599993896484378" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="449.80000305175776" minHeight="10.0" prefHeight="436.6000061035156" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label fx:id="lblSubject" prefHeight="68.0" prefWidth="604.0" text="Subject" textAlignment="CENTER" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label fx:id="lblRecipient" alignment="TOP_LEFT" prefHeight="18.0" prefWidth="605.0" text="From:" textAlignment="JUSTIFY" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label fx:id="lblTime" alignment="TOP_RIGHT" prefHeight="27.0" prefWidth="604.0" text="Time:" textAlignment="JUSTIFY" GridPane.rowIndex="2">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <WebView fx:id="wvContent" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3" />
+                           </children>
+                        </GridPane>
+                     </content></ScrollPane>
+                  <ButtonBar fx:id="btnbarFunction" layoutX="148.0" layoutY="5.0" prefHeight="40.0" prefWidth="466.0">
                     <buttons>
                       <Button id="btnReply" fx:id="btnReply" mnemonicParsing="false" stylesheets="@../css/sendMailDialog.css" text="Reply" />
                         <Button id="btnForward" fx:id="btnForward" mnemonicParsing="false" stylesheets="@../css/sendMailDialog.css" text="Forward" />
@@ -72,6 +114,14 @@
                         <Button id="btnDelete" fx:id="btnDelete" mnemonicParsing="false" stylesheets="@../css/sendMailDialog.css" text="Delete" />
                     </buttons>
                   </ButtonBar>
+                  <Button fx:id="btnCreateMessage" layoutX="7.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleCreateMessageDialog" prefHeight="34.0" prefWidth="100.0" text="Compose" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="8.0">
+                     <graphic>
+                        <FontAwesomeIcon fill="WHITE" iconName="PLUS" size="1.5em" />
+                     </graphic>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
                </children></AnchorPane>
         </items>
       </SplitPane>

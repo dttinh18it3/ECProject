@@ -11,19 +11,12 @@
         <menus>
           <Menu mnemonicParsing="false" text="Accounts">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
+              <MenuItem mnemonicParsing="false" text="Option 1" />
+                  <MenuItem mnemonicParsing="false" text="Option 2" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Contacts">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Settings">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
+          <Menu mnemonicParsing="false" text="Contacts" />
+          <Menu mnemonicParsing="false" text="Settings" />
         </menus>
       </MenuBar>
    </top>
