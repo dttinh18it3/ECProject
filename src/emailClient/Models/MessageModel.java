@@ -10,13 +10,15 @@ public class MessageModel {
     private final StringProperty recipient;
     private final StringProperty mailSubject;
     private final StringProperty mailContent;
+    private final StringProperty dateReceived;
 
 
-    public MessageModel(Integer mailID, String recipient, String mailSubject, String mailContent) {
+    public MessageModel(Integer mailID, String recipient, String mailSubject, String mailContent, String dateReceived) {
         this.mailID = new SimpleIntegerProperty(mailID);
         this.recipient = new SimpleStringProperty(recipient);
         this.mailSubject = new SimpleStringProperty(mailSubject);
         this.mailContent = new SimpleStringProperty(mailContent);
+        this.dateReceived = new SimpleStringProperty(dateReceived);
     }
 
     public int getMailID() {
@@ -61,6 +63,18 @@ public class MessageModel {
 
     public StringProperty mailContentProperty() {
         return mailContent;
+    }
+
+    public String getDateReceived() {
+        return dateReceived.get();
+    }
+
+    public StringProperty dateReceivedProperty() {
+        return dateReceived;
+    }
+
+    public void setDateReceived(String dateReceived) {
+        this.dateReceived.set(dateReceived);
     }
 
     public void setMailContent(String mailContent) {

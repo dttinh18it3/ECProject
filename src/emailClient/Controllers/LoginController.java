@@ -54,6 +54,9 @@ public class LoginController {
         properties.put("mail.pop3s.port", "995");
         properties.put("mail.pop3s.starttls.enable", "true");
 
+//  IMAP
+        properties.setProperty("mail.store.protocol", "imaps");
+
         login_email = tfLoginEmail.getText().trim();
         login_password = tfLoginPassword.getText().trim();
         try {

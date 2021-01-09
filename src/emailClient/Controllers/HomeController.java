@@ -1,5 +1,6 @@
 package emailClient.Controllers;
 
+import com.sun.mail.imap.IMAPFolder;
 import emailClient.Main;
 import emailClient.Models.MessageModel;
 import javafx.collections.FXCollections;
@@ -82,18 +83,18 @@ public class HomeController {
     public void getInbox() {
         // create the POP3 store object and connect with the pop server
         try {
-            Store store = LoginController.session.getStore("pop3s");
-            store.connect();
+            Store store = LoginController.session.getStore("imaps");
+            store.connect("imap.googlemail.com", LoginController.login_email, LoginController.login_password);
             // create the folder object and open it
-            Folder emailFolder = store.getFolder("INBOX");
+            Folder emailFolder = (IMAPFolder) store.getFolder("INBOX");
             emailFolder.open(Folder.READ_ONLY);
             // retrieve the messages from the folder in an array and print it
             Message[] messages = emailFolder.getMessages();
             System.out.println("messages.length---" + messages.length);
-            for (int i = 0, n = messages.length; i < n; i++) {
+            for (int n = messages.length - 1, i = n; i >= 0; i--) {
                 Message message = messages[i];
                 String recipient = String.valueOf(message.getFrom()[0]);
-                messageData.add(new MessageModel(i, recipient, message.getSubject(), message.getContent().toString()));
+                messageData.add(new MessageModel(i, recipient, message.getSubject(), message.getContent().toString(), message.getReceivedDate().toString()));
             }
             // close the store and folder objects
             emailFolder.close(false);
@@ -131,6 +132,7 @@ public class HomeController {
             spMessageDetails.setVisible(true);
             lblSubject.setText(messageModel.getMailSubject());
             lblRecipient.setText(messageModel.getRecipient());
+            lblTime.setText(messageModel.getDateReceived());
             wvContent.getEngine().loadContent(messageModel.getMailContent(), "text/html");
         }
     }
